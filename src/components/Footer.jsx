@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import {
   MapPin,
   Phone,
@@ -5,30 +6,56 @@ import {
   ArrowUpRight,
 } from 'lucide-react';
 
-
 const QUICK_LINKS = [
   { label: 'Home', href: '#hero', color: '#D4A72C' },
-  { label: 'About Us', href: '/about', color: '#D4A72C' },
-  { label: 'Services', href: '/services', color: '#D4A72C' },
-  { label: 'Business Setup', href: '/business-setup', color: '#D4A72C' },
-  { label: 'Partners', href: '/partners', color: '#D4A72C' },
-  { label: 'Contact', href: '/contact', color: '#D4A72C' },
+  { label: 'About Us', href: '#about', color: '#D4A72C' },
+  { label: 'Services', href: '#services', color: '#D4A72C' },
+  { label: 'Business Setup', href: '#stack', color: '#D4A72C' },
+  { label: 'Partners', href: '#stack', color: '#D4A72C' },
+  { label: 'Contact', href: '#contact', color: '#D4A72C' },
 ];
 
 const SERVICES_LINKS = [
-  { label: 'Residential Mortgage Overview', href: '/contact', color: '#527A33' },
-  { label: 'Non-Resident Solutions', href: '/contact', color: '#C2410C' },
-  { label: 'Investment Properties', href: '/contact', color: '#2563EB' },
-  { label: 'Mortgage Refinancing', href: '/contact', color: '#EEAB21' },
-  { label: 'Mortgage Buyout & Equity Release', href: '/contact', color: '#DB2777' },
-  { label: 'Commercial Mortgage Finance', href: '/contact', color: '#B45309' },
+  { label: 'Residential Mortgage Overview', href: '#demo', color: '#527A33' },
+  { label: 'Non-Resident Solutions', href: '#demo', color: '#C2410C' },
+  { label: 'Investment Properties', href: '#demo', color: '#2563EB' },
+  { label: 'Mortgage Refinancing', href: '#demo', color: '#EEAB21' },
+  { label: 'Mortgage Buyout & Equity Release', href: '#demo', color: '#DB2777' },
+  { label: 'Commercial Mortgage Finance', href: '#demo', color: '#B45309' },
 ];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.65,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
 
 const Footer = () => {
   return (
     <footer className="bg-neutral-900 p-3 sm:p-4 text-slate-300 font-comforta">
       <div className="mx-auto flex justify-center">
-        <div
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
           className="relative w-full max-w-[1800px] overflow-hidden rounded-3xl border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)]"
           style={{
             background: 'linear-gradient(180deg, hsl(30 12% 12%) 0%, hsl(30 12% 7%) 100%)',
@@ -39,20 +66,10 @@ const Footer = () => {
             <div className="border-b border-white/10 px-6 sm:px-10 lg:px-14 pt-12 pb-12 sm:pt-14 sm:pb-14">
               <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
                 {/* Brand & Mission Column */}
-                <div className="space-y-4 lg:col-span-4">
-                  <a href="#hero" className="inline-flex items-center gap-2">
-                    {/* <img
-                      src="/logo.webp"
-                      alt="Loro Labs"
-                      width="82"
-                      height="32"
-                      className="h-8 w-auto opacity-90 text-white bg-white rounded-lg p-2"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                      }}
-                    /> */}
-                    <span className="text-xl font-bold tracking-tight text-white">
-                      Apexx Advisory
+                <motion.div variants={fadeUpVariants} className="space-y-4 lg:col-span-4">
+                  <a href="#hero" className="inline-flex items-center gap-2 group">
+                    <span className="text-xl font-bold tracking-tight text-white transition-transform duration-300 group-hover:scale-105">
+                      Appex Advisory
                     </span>
                   </a>
 
@@ -73,59 +90,57 @@ const Footer = () => {
 
                   {/* Social Icons */}
                   <div className="flex flex-wrap items-center gap-3 pt-2">
-                    <a
-                      href="https://www.facebook.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Facebook"
-                      className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-slate-300 transition-all hover:bg-white/15 hover:text-white hover:scale-105"
-                    >
-                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://www.instagram.com.ai"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Instagram"
-                      className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-slate-300 transition-all hover:bg-white/15 hover:text-white hover:scale-105"
-                    >
-                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://ph.linkedin.com/company/loro-labs"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="LinkedIn"
-                      className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-slate-300 transition-all hover:bg-white/15 hover:text-white hover:scale-105"
-                    >
-                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                        <rect width="4" height="12" x="2" y="9" />
-                        <circle cx="4" cy="4" r="2" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://github.com-ai"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="GitHub"
-                      className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-slate-300 transition-all hover:bg-white/15 hover:text-white hover:scale-105"
-                    >
-                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
-                      </svg>
-                    </a>
+                    {[
+                      {
+                        name: 'Facebook',
+                        href: 'https://www.facebook.com',
+                        icon: (
+                          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                          </svg>
+                        ),
+                      },
+                      {
+                        name: 'Instagram',
+                        href: 'https://www.instagram.com',
+                        icon: (
+                          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                          </svg>
+                        ),
+                      },
+                      {
+                        name: 'LinkedIn',
+                        href: 'https://www.linkedin.com',
+                        icon: (
+                          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="9" />
+                            <circle cx="4" cy="4" r="2" />
+                          </svg>
+                        ),
+                      },
+                    ].map((social) => (
+                      <motion.a
+                        key={social.name}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.name}
+                        whileHover={{ scale: 1.12, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-slate-300 transition-all hover:bg-white/15 hover:text-white"
+                      >
+                        {social.icon}
+                      </motion.a>
+                    ))}
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Quick Links Column */}
-                <div className="space-y-4 lg:col-span-2">
+                <motion.div variants={fadeUpVariants} className="space-y-4 lg:col-span-2">
                   <h3 className="text-xs font-bold uppercase tracking-widest text-white">
                     Quick Links
                   </h3>
@@ -136,7 +151,9 @@ const Footer = () => {
                           href={link.href}
                           className="group relative inline-block text-sm text-slate-300 transition-colors duration-200 hover:text-white"
                         >
-                          <span>{link.label}</span>
+                          <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
+                            {link.label}
+                          </span>
                           <span
                             className="absolute -bottom-0.5 left-0 h-[1.5px] w-0 transition-all duration-300 group-hover:w-full"
                             style={{ backgroundColor: link.color }}
@@ -145,10 +162,10 @@ const Footer = () => {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
 
                 {/* Services Column */}
-                <div className="hidden md:block space-y-4 lg:col-span-2">
+                <motion.div variants={fadeUpVariants} className="hidden md:block space-y-4 lg:col-span-2">
                   <h3 className="text-xs font-bold uppercase tracking-widest text-white">
                     Services
                   </h3>
@@ -159,7 +176,9 @@ const Footer = () => {
                           href={link.href}
                           className="group relative inline-block text-sm text-slate-300 transition-colors duration-200 hover:text-white"
                         >
-                          <span>{link.label}</span>
+                          <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
+                            {link.label}
+                          </span>
                           <span
                             className="absolute -bottom-0.5 left-0 h-[1.5px] w-0 transition-all duration-300 group-hover:w-full"
                             style={{ backgroundColor: link.color }}
@@ -168,10 +187,10 @@ const Footer = () => {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
 
                 {/* Studio & Contact Column */}
-                <div className="space-y-4 lg:col-span-4">
+                <motion.div variants={fadeUpVariants} className="space-y-4 lg:col-span-4">
                   <div>
                     <h3 className="text-xs font-bold uppercase tracking-widest text-white">
                       Contact us
@@ -182,21 +201,15 @@ const Footer = () => {
                   </div>
 
                   <div className="space-y-3 pt-1">
-                    <div className="flex items-start gap-3">
-                      <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
-                      <a
-                        href="https://maps.google.com/?q=Unit%20111%20Spark%20Place%2C%20P.%20Tuazon%20Avenue%20cor.%2010th%20Avenue%2C%20Araneta%20City%2C%20Cubao%2C%20Quezon%20City%201109%2C%20Philippines"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs leading-relaxed text-slate-300 transition-colors hover:text-white sm:text-sm max-w-xs"
-                      >
-                        UAE Business Centre,
-                        Dubai, United Arab Emirates
-                      </a>
+                    <div className="flex items-start gap-3 group">
+                      <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-slate-400 transition-transform duration-200 group-hover:scale-110" />
+                      <span className="text-xs leading-relaxed text-slate-300 sm:text-sm max-w-xs">
+                        UAE Business Centre, Sheikh Zayed Road, Dubai, United Arab Emirates
+                      </span>
                     </div>
 
-                    <div className="flex items-center gap-3">
-                      <Phone className="h-4 w-4 shrink-0 text-slate-400" />
+                    <div className="flex items-center gap-3 group">
+                      <Phone className="h-4 w-4 shrink-0 text-slate-400 transition-transform duration-200 group-hover:scale-110" />
                       <a
                         href="tel:+639602778783"
                         className="text-xs text-slate-300 transition-colors hover:text-white sm:text-sm"
@@ -205,8 +218,8 @@ const Footer = () => {
                       </a>
                     </div>
 
-                    <div className="flex items-center gap-3">
-                      <Mail className="h-4 w-4 shrink-0 text-slate-400" />
+                    <div className="flex items-center gap-3 group">
+                      <Mail className="h-4 w-4 shrink-0 text-slate-400 transition-transform duration-200 group-hover:scale-110" />
                       <a
                         href="mailto:gauravr@appexmortgage.ae"
                         className="text-xs text-slate-300 transition-colors hover:text-white sm:text-sm"
@@ -217,20 +230,22 @@ const Footer = () => {
                   </div>
 
                   <div className="pt-2">
-                    <a
-                      href="/contact"
-                      className="inline-flex items-center gap-2 rounded-xl bg-[#d9ab5d] px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-md transition-all duration-200 hover:bg-[#d8a245] hover:shadow-lg hover:scale-105 active:scale-95 cursor-pointer"
+                    <motion.a
+                      href="#contact"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="inline-flex items-center gap-2 rounded-xl bg-[#d9ab5d] px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-md transition-all duration-200 hover:bg-[#d8a245] hover:shadow-lg cursor-pointer group"
                     >
                       <span>Book Consultation</span>
-                      <ArrowUpRight className="h-4 w-4" />
-                    </a>
+                      <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </motion.a>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
 
             {/* Bottom Sub-footer Bar */}
-            <div className="px-6 sm:px-10 lg:px-14 py-6 sm:py-8">
+            <motion.div variants={fadeUpVariants} className="px-6 sm:px-10 lg:px-14 py-6 sm:py-8">
               <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
                 <p className="text-center text-xs text-slate-400 md:text-left sm:text-sm">
                   © 2026 Appex Advisory. All rights reserved.
@@ -242,23 +257,23 @@ const Footer = () => {
 
                 <div className="flex flex-wrap items-center justify-center gap-4 md:justify-end">
                   <a
-                    href="/privacy-policy"
+                    href="#contact"
                     className="text-xs text-slate-400 transition-colors duration-200 hover:text-[#7C3AED] sm:text-sm"
                   >
                     Privacy
                   </a>
                   <span className="text-slate-600">•</span>
                   <a
-                    href="/terms-and-conditions"
+                    href="#contact"
                     className="text-xs text-slate-400 transition-colors duration-200 hover:text-[#2563EB] sm:text-sm"
                   >
                     Terms
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
