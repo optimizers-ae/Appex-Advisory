@@ -31,7 +31,10 @@ const AccentBanner = ({
 
         {/* Top Floating Badge */}
         <div className="absolute top-6 left-6 md:top-10 md:left-10 z-10">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90 backdrop-blur-md">
+          <span
+            data-magnetic
+            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90 backdrop-blur-md cursor-pointer select-none"
+          >
             <span className="h-1.5 w-1.5 rounded-full bg-[#00C9A7] animate-ping" />
             {badge}
           </span>
@@ -39,10 +42,12 @@ const AccentBanner = ({
 
         {/* Text Block */}
         <div
-          className={`absolute z-10 max-w-[14rem] md:max-w-[18rem] text-[10px] md:text-xs font-semibold uppercase leading-[1.8] tracking-[0.2em] text-white/90 font-mono ${position === 'bottom-right'
+          data-magnetic
+          className={`absolute z-10 max-w-[14rem] md:max-w-[18rem] text-[10px] md:text-xs font-semibold uppercase leading-[1.8] tracking-[0.2em] text-white/90 font-mono select-none ${
+            position === 'bottom-right'
               ? 'bottom-8 right-6 md:bottom-12 md:right-12 text-right'
               : 'bottom-8 left-6 md:bottom-12 md:left-12 text-left'
-            }`}
+          }`}
         >
           {lines.map((line, idx) => (
             <span key={idx} className="block drop-shadow-md">
