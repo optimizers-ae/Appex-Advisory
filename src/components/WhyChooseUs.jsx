@@ -11,6 +11,7 @@ import {
   Layers,
   Clock,
 } from 'lucide-react';
+import { MagneticCursor } from './MouseTrackingEffect';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -156,21 +157,29 @@ const WhyChooseUs = () => {
               </div>
 
               {/* Media Container with Smooth Hover Scale & Shine */}
-              <div className="relative min-h-[15rem] flex-1 overflow-hidden bg-neutral-950">
-                <img
-                  src="/FASTER-poster.webp"
-                  alt="Understand Business Process Strategy"
-                  loading="lazy"
-                  decoding="async"
-                  width="600"
-                  height="400"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105 opacity-85"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent" />
-                
-                {/* Subtle shine sweep */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.07] to-transparent -translate-x-full group-hover/card:translate-x-full transition-transform duration-1000 ease-in-out" />
-              </div>
+              <MagneticCursor
+                magneticFactor={0.55}
+                blendMode="exclusion"
+                cursorSize={40}
+                className="min-h-[15rem] flex-1"
+              >
+                <div className="relative h-full w-full min-h-[15rem] overflow-hidden bg-neutral-950">
+                  <img
+                    src="/FASTER-poster.webp"
+                    alt="Understand Business Process Strategy"
+                    loading="lazy"
+                    decoding="async"
+                    width="600"
+                    height="400"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105 opacity-85"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent" />
+
+                  {/* Subtle shine sweep */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.07] to-transparent -translate-x-full group-hover/card:translate-x-full transition-transform duration-1000 ease-in-out" />
+                </div>
+              </MagneticCursor>
+
             </div>
           </motion.div>
 
@@ -184,18 +193,25 @@ const WhyChooseUs = () => {
               {/* Top Accent Line */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-[#EEAB21] transition-all duration-500 group-hover/card:h-1.5" />
 
-              <div className="relative min-h-[11rem] sm:w-1/2 overflow-hidden bg-neutral-950 shrink-0">
-                <img
-                  src="/SCALE-poster.webp"
-                  alt="One Dedicated Team Support"
-                  loading="lazy"
-                  decoding="async"
-                  width="400"
-                  height="300"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105 opacity-85"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07090e]/80 via-transparent to-transparent sm:bg-gradient-to-r sm:from-transparent sm:to-[#07090e]" />
-              </div>
+              <MagneticCursor
+                magneticFactor={0.55}
+                blendMode="exclusion"
+                cursorSize={40}
+                className="min-h-[11rem] sm:w-1/2 shrink-0 self-stretch"
+              >
+                <div className="relative h-full w-full min-h-[11rem] overflow-hidden bg-neutral-950">
+                  <img
+                    src="/SCALE-poster.webp"
+                    alt="One Dedicated Team Support"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="300"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105 opacity-85"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07090e]/80 via-transparent to-transparent sm:bg-gradient-to-r sm:from-transparent sm:to-[#07090e]" />
+                </div>
+              </MagneticCursor>
 
               <div className="flex flex-1 flex-col justify-center p-6 sm:p-7">
                 <div className="mb-2 flex items-center gap-2.5">
@@ -229,18 +245,25 @@ const WhyChooseUs = () => {
               {/* Top Accent Line */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-[#2563EB] transition-all duration-500 group-hover/card:h-1.5" />
 
-              <div className="relative min-h-[11rem] sm:w-1/2 overflow-hidden bg-neutral-950 shrink-0">
-                <img
-                  src="/poster.webp"
-                  alt="Transparent Honest Advice"
-                  loading="lazy"
-                  decoding="async"
-                  width="400"
-                  height="300"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105 opacity-85"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07090e]/80 via-transparent to-transparent sm:bg-gradient-to-r sm:from-transparent sm:to-[#07090e]" />
-              </div>
+              <MagneticCursor
+                magneticFactor={0.55}
+                blendMode="exclusion"
+                cursorSize={40}
+                className="min-h-[11rem] sm:w-1/2 shrink-0 self-stretch"
+              >
+                <div className="relative h-full w-full min-h-[11rem] overflow-hidden bg-neutral-950">
+                  <img
+                    src="/poster.webp"
+                    alt="Transparent Honest Advice"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="300"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105 opacity-85"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07090e]/80 via-transparent to-transparent sm:bg-gradient-to-r sm:from-transparent sm:to-[#07090e]" />
+                </div>
+              </MagneticCursor>
 
               <div className="flex flex-1 flex-col justify-center p-6 sm:p-7">
                 <div className="mb-2 flex items-center gap-2.5">
@@ -274,18 +297,25 @@ const WhyChooseUs = () => {
               {/* Top Accent Line with Gradient */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#00C9A7] via-[#2563EB] to-[#d8aa5d] transition-all duration-500 group-hover/card:h-1.5" />
 
-              <div className="relative min-h-[13rem] overflow-hidden bg-neutral-950 md:w-[36%] md:max-w-[22rem] shrink-0">
-                <img
-                  src="/SEARCH-poster.webp"
-                  alt="Support That Continues Beyond Setup"
-                  loading="lazy"
-                  decoding="async"
-                  width="400"
-                  height="300"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105 opacity-85"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07090e]/80 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#07090e]" />
-              </div>
+              <MagneticCursor
+                magneticFactor={0.55}
+                blendMode="exclusion"
+                cursorSize={40}
+                className="min-h-[13rem] md:w-[36%] md:max-w-[22rem] shrink-0 self-stretch"
+              >
+                <div className="relative h-full w-full min-h-[13rem] overflow-hidden bg-neutral-950">
+                  <img
+                    src="/SEARCH-poster.webp"
+                    alt="Support That Continues Beyond Setup"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="300"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105 opacity-85"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07090e]/80 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#07090e]" />
+                </div>
+              </MagneticCursor>
 
               <div className="flex-1 p-6 md:p-8">
                 <div className="mb-3 flex items-center justify-between">

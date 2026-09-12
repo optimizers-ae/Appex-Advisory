@@ -18,6 +18,7 @@ interface MagneticCursorProps {
   maxScaleX?: number;
   maxScaleY?: number;
   contrastBoost?: number;
+  className?: string;
 }
 
 interface CursorState {
@@ -46,6 +47,7 @@ export const MagneticCursor: FC<MagneticCursorProps> = ({
   speedMultiplier = 0.02,
   maxScaleX = 1,
   maxScaleY = 0.3,
+  className = '',
 }) => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -331,7 +333,7 @@ export const MagneticCursor: FC<MagneticCursorProps> = ({
   };
 
   return (
-    <div ref={wrapperRef} className="relative overflow-hidden">
+    <div ref={wrapperRef} className={`relative overflow-hidden ${className}`}>
       <div ref={cursorRef} className={`magnetic-cursor ${cursorClassName}`} style={styles} />
       {children}
     </div>
