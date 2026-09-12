@@ -75,7 +75,11 @@ export const MagneticCursor: FC<MagneticCursorProps> = ({
   }, [magneticFactor, speedMultiplier, maxScaleX, maxScaleY, cursorSize, lerpAmount, hoverPadding]);
 
   useEffect(() => {
-    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    const isTouch =
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia('(hover: none)').matches;
+    setIsTouchDevice(isTouch);
   }, []);
 
   useEffect(() => {

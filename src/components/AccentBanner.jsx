@@ -17,6 +17,9 @@ const AccentBanner = ({
         <img
           src={image}
           alt={alt}
+          width="1600"
+          height="900"
+          decoding="async"
           className="absolute inset-0 h-full w-full object-cover object-center opacity-85 transition-transform duration-700 hover:scale-103"
           loading="lazy"
           onError={(e) => {

@@ -332,7 +332,7 @@ const DashboardDemo = () => {
                 </div>
 
                 {/* Interactive Navigation Tabs with Animated Layout Indicator */}
-                <div className="flex flex-wrap items-center gap-1 rounded-xl bg-black/50 p-1 border border-white/10 relative">
+                <div role="tablist" aria-label="Dashboard Live Calculators" className="flex flex-wrap items-center gap-1 rounded-xl bg-black/50 p-1 border border-white/10 relative">
                   {[
                     { id: 'mortgage', label: 'Mortgage Qualifier', icon: Calculator },
                     { id: 'company', label: 'Company Setup Estimator', icon: Building2 },
@@ -344,12 +344,16 @@ const DashboardDemo = () => {
                     return (
                       <button
                         key={tab.id}
+                        id={`dashboard-tab-${tab.id}`}
+                        role="tab"
+                        aria-selected={isActive}
+                        aria-controls={`dashboard-panel-${tab.id}`}
                         type="button"
                         onClick={() => setActiveTab(tab.id)}
                         className={`relative flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-200 cursor-pointer z-10 ${
                           isActive
                             ? 'text-neutral-950 font-bold'
-                            : 'text-neutral-400 hover:text-white hover:bg-white/5'
+                            : 'text-neutral-300 hover:text-white hover:bg-white/5'
                         }`}
                       >
                         {isActive && (
@@ -359,7 +363,7 @@ const DashboardDemo = () => {
                             className="absolute inset-0 rounded-lg bg-[#d8aa5d] shadow-md shadow-[#d8aa5d]/30 -z-10"
                           />
                         )}
-                        <Icon className="h-3.5 w-3.5" />
+                        <Icon className="h-3.5 w-3.5" aria-hidden="true" />
                         <span>{tab.label}</span>
                       </button>
                     );
@@ -424,12 +428,14 @@ const DashboardDemo = () => {
                       {/* Control 1: Property Price */}
                       <div className="space-y-2">
                         <div className="flex justify-between items-center text-xs">
-                          <span className="text-neutral-300 font-medium">Property Purchase Price</span>
+                          <label htmlFor="property-price-input" className="text-neutral-200 font-medium">Property Purchase Price</label>
                           <span className="font-mono text-sm font-bold text-white">
                             AED {propertyPrice.toLocaleString()}
                           </span>
                         </div>
                         <input
+                          id="property-price-input"
+                          aria-label="Property Purchase Price in AED"
                           type="range"
                           min="750000"
                           max="15000000"
@@ -438,7 +444,7 @@ const DashboardDemo = () => {
                           onChange={(e) => setPropertyPrice(Number(e.target.value))}
                           className="w-full accent-[#d8aa5d] cursor-pointer h-2 bg-white/10 rounded-lg appearance-none transition-all"
                         />
-                        <div className="flex justify-between text-[10px] text-neutral-500 font-mono">
+                        <div className="flex justify-between text-[10px] text-neutral-400 font-mono">
                           <span>AED 750K</span>
                           <span>AED 7.5M</span>
                           <span>AED 15M+</span>
@@ -448,14 +454,16 @@ const DashboardDemo = () => {
                       {/* Control 2: Down Payment */}
                       <div className="space-y-2">
                         <div className="flex justify-between items-center text-xs">
-                          <span className="text-neutral-300 font-medium">
+                          <label htmlFor="down-payment-input" className="text-neutral-200 font-medium">
                             Down Payment ({downPaymentPercent}%)
-                          </span>
+                          </label>
                           <span className="font-mono text-sm font-bold text-[#00C9A7]">
                             AED {Math.round(propertyPrice * (downPaymentPercent / 100)).toLocaleString()}
                           </span>
                         </div>
                         <input
+                          id="down-payment-input"
+                          aria-label="Down Payment percentage"
                           type="range"
                           min={clientType === 'resident' ? 20 : 35}
                           max="50"
@@ -464,7 +472,7 @@ const DashboardDemo = () => {
                           onChange={(e) => setDownPaymentPercent(Number(e.target.value))}
                           className="w-full accent-[#00C9A7] cursor-pointer h-2 bg-white/10 rounded-lg appearance-none transition-all"
                         />
-                        <div className="flex justify-between text-[10px] text-neutral-500 font-mono">
+                        <div className="flex justify-between text-[10px] text-neutral-400 font-mono">
                           <span>Min {clientType === 'resident' ? '20%' : '35%'} (Central Bank Rule)</span>
                           <span>LTV: {100 - downPaymentPercent}%</span>
                           <span>Max 50%</span>
@@ -475,10 +483,12 @@ const DashboardDemo = () => {
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <div className="flex justify-between items-center text-xs">
-                            <span className="text-neutral-300 font-medium">Loan Tenure</span>
+                            <label htmlFor="loan-tenure-select" className="text-neutral-200 font-medium">Loan Tenure</label>
                             <span className="font-mono text-xs font-bold text-white">{tenureYears} Years</span>
                           </div>
                           <select
+                            id="loan-tenure-select"
+                            aria-label="Loan Tenure in years"
                             value={tenureYears}
                             onChange={(e) => setTenureYears(Number(e.target.value))}
                             className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs text-white focus:outline-none focus:border-[#d8aa5d] cursor-pointer transition-colors"
@@ -493,10 +503,12 @@ const DashboardDemo = () => {
 
                         <div className="space-y-2">
                           <div className="flex justify-between items-center text-xs">
-                            <span className="text-neutral-300 font-medium">Est. Interest Rate</span>
+                            <label htmlFor="interest-rate-select" className="text-neutral-200 font-medium">Est. Interest Rate</label>
                             <span className="font-mono text-xs font-bold text-[#EEAB21]">{interestRate}% p.a.</span>
                           </div>
                           <select
+                            id="interest-rate-select"
+                            aria-label="Estimated Interest Rate percentage"
                             value={interestRate}
                             onChange={(e) => setInterestRate(Number(e.target.value))}
                             className="w-full rounded-xl bg-white/5 border border-white/10 px-3 py-2 text-xs text-white focus:outline-none focus:border-[#d8aa5d] cursor-pointer transition-colors"
@@ -661,13 +673,15 @@ const DashboardDemo = () => {
                       {/* Visa Count Slider */}
                       <div className="space-y-2 pt-2">
                         <div className="flex justify-between items-center text-xs">
-                          <span className="text-neutral-300 font-medium">Investor / Employee Visas Needed</span>
+                          <label htmlFor="visa-count-input" className="text-neutral-300 font-medium">Investor / Employee Visas Needed</label>
                           <span className="font-mono text-sm font-bold text-[#00C9A7]">
                             {visaCount} {visaCount === 1 ? 'Visa' : 'Visas'} (AED{' '}
                             {(visaCount * selectedJurisdiction.visaUnitCost).toLocaleString()})
                           </span>
                         </div>
                         <input
+                          id="visa-count-input"
+                          aria-label="Investor and Employee Visas Needed"
                           type="range"
                           min="0"
                           max="8"
@@ -676,7 +690,7 @@ const DashboardDemo = () => {
                           onChange={(e) => setVisaCount(Number(e.target.value))}
                           className="w-full accent-[#00C9A7] cursor-pointer h-2 bg-white/10 rounded-lg appearance-none transition-all"
                         />
-                        <div className="flex justify-between text-[10px] text-neutral-500 font-mono">
+                        <div className="flex justify-between text-[10px] text-neutral-400 font-mono">
                           <span>0 (License Only)</span>
                           <span>4 Visas</span>
                           <span>8 Visas</span>

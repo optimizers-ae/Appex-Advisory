@@ -588,12 +588,14 @@ const TechStackGrid = () => {
         </div>
 
         {/* Category Selector Tabs */}
-        <div className="mt-14 flex flex-wrap items-center justify-center gap-2">
+        <div role="tablist" aria-label="Partner Categories" className="mt-14 flex flex-wrap items-center justify-center gap-2">
           {CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
               <button
                 key={cat.id}
+                role="tab"
+                aria-selected={isActive}
                 type="button"
                 onClick={() => setActiveCategory(cat.id)}
                 className={`rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${

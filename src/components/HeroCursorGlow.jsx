@@ -31,6 +31,9 @@ const HeroCursorGlow = ({ heroId = 'hero' }) => {
   const headSparkleRef = useRef(null)
 
   useEffect(() => {
+    const isTouchOrReduced = window.matchMedia('(hover: none), (prefers-reduced-motion: reduce)').matches
+    if (isTouchOrReduced) return
+
     const hero = document.getElementById(heroId)
     const container = containerRef.current
     if (!hero || !container) return
@@ -47,11 +50,15 @@ const HeroCursorGlow = ({ heroId = 'hero' }) => {
     let targetOpacity = 0
     let currentOpacity = 0
     let isInside = false
-    let animationFrame
+    let isIntersecting = true
+    let animationFrame = null
 
     const handleMouseEnter = () => {
       isInside = true
       targetOpacity = 1
+      if (isIntersecting && !animationFrame) {
+        animationFrame = requestAnimationFrame(animate)
+      }
     }
 
     const handleMouseMove = (e) => {
@@ -73,6 +80,9 @@ const HeroCursorGlow = ({ heroId = 'hero' }) => {
       if (!isInside) {
         isInside = true
         targetOpacity = 1
+        if (isIntersecting && !animationFrame) {
+          animationFrame = requestAnimationFrame(animate)
+        }
       }
     }
 
@@ -84,6 +94,11 @@ const HeroCursorGlow = ({ heroId = 'hero' }) => {
     }
 
     const animate = () => {
+      if (!isIntersecting) {
+        animationFrame = null
+        return
+      }
+
       // 1. Head tracks cursor with silky smooth responsiveness
       points[0].x += (targetX - points[0].x) * 0.22
       points[0].y += (targetY - points[0].y) * 0.22
@@ -119,19 +134,44 @@ const HeroCursorGlow = ({ heroId = 'hero' }) => {
         headSparkleRef.current.style.transform = `translate3d(${points[0].x - 16}px, ${points[0].y - 16}px, 0)`
       }
 
+      // If faded out and mouse left, stop loop to preserve battery/CPU
+      if (!isInside && currentOpacity < 0.01) {
+        animationFrame = null
+        return
+      }
+
       animationFrame = requestAnimationFrame(animate)
     }
 
+    // IntersectionObserver to pause loop when Hero is out of view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isIntersecting = entry.isIntersecting
+          if (isIntersecting && isInside && !animationFrame) {
+            animationFrame = requestAnimationFrame(animate)
+          } else if (!isIntersecting && animationFrame) {
+            cancelAnimationFrame(animationFrame)
+            animationFrame = null
+          }
+        })
+      },
+      { threshold: 0.05 }
+    )
+
+    observer.observe(hero)
     hero.addEventListener('mouseenter', handleMouseEnter)
-    hero.addEventListener('mousemove', handleMouseMove)
+    hero.addEventListener('mousemove', handleMouseMove, { passive: true })
     hero.addEventListener('mouseleave', handleMouseLeave)
-    animationFrame = requestAnimationFrame(animate)
 
     return () => {
+      observer.disconnect()
       hero.removeEventListener('mouseenter', handleMouseEnter)
       hero.removeEventListener('mousemove', handleMouseMove)
       hero.removeEventListener('mouseleave', handleMouseLeave)
-      cancelAnimationFrame(animationFrame)
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame)
+      }
     }
   }, [heroId])
 

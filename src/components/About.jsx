@@ -263,6 +263,9 @@ const About = () => {
                       src={service.image}
                       alt={service.title}
                       loading="lazy"
+                      decoding="async"
+                      width="460"
+                      height="345"
                       className="absolute inset-0 h-full w-full object-cover object-center transition-all duration-700 ease-out group-hover/service:scale-[1.06] group-hover/service:blur-[3px]"
                     />
 

@@ -48,15 +48,23 @@ const Navbar = () => {
     return () => clearInterval(interval)
   }, [])
 
-  // Lock body scroll when menu is open
+  // Lock body scroll and listen for Escape key when menu is open
   useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false)
+      }
+    }
+
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden'
+      window.addEventListener('keydown', handleKeyDown)
     } else {
       document.body.style.overflow = ''
     }
     return () => {
       document.body.style.overflow = ''
+      window.removeEventListener('keydown', handleKeyDown)
     }
   }, [mobileMenuOpen])
 
@@ -156,8 +164,10 @@ const Navbar = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="navigation-drawer"
             className="group relative z-10 flex h-10 w-10 shrink-0 cursor-pointer flex-col items-center justify-center gap-[5px] rounded-full border border-[#d8aa5d]/80 bg-[#d8aa5d] shadow-[0_6px_14px_rgba(0,0,0,0.35)] transition-all duration-300 hover:bg-white hover:border-[#d8aa5d] hover:scale-105"
-            aria-label="Open menu"
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           >
             <span className="block w-4 h-[1.5px] rounded-full bg-white transition-colors duration-300 group-hover:bg-[#d8aa5d]" />
             <span className="block w-4 h-[1.5px] rounded-full bg-white transition-colors duration-300 group-hover:bg-[#d8aa5d]" />
@@ -184,11 +194,13 @@ const Navbar = () => {
               href="#hero"
               onClick={(e) => handleNavClick(e, '#hero')}
               className="relative z-10 flex items-center justify-center w-28 h-10 px-2 rounded-full overflow-hidden transition-all group shrink-0"
-              aria-label="Appex"
+              aria-label="Appex home"
             >
               <img
                 src="/logo.webp"
                 alt="Appex logo"
+                width="80"
+                height="32"
                 className="h-8 w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
                 onError={(e) => {
                   e.currentTarget.style.display = 'none'
@@ -197,18 +209,18 @@ const Navbar = () => {
             </a>
 
             {/* Navigation Links */}
-            <nav className="relative z-10 hidden md:flex items-center flex-1 justify-center gap-6 min-w-0 nav-text-glow">
+            <nav aria-label="Main Desktop Navigation" className="relative z-10 hidden md:flex items-center flex-1 justify-center gap-6 min-w-0 nav-text-glow">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="group relative px-2 py-2 text-sm font-medium text-neutral-950 whitespace-nowrap transition-all duration-300 hover:-translate-y-[1px] hover:text-white"
+                  className="group relative px-2 py-2 text-sm font-semibold text-neutral-950 whitespace-nowrap transition-all duration-300 hover:-translate-y-[1px] hover:text-white"
                 >
                   <span className="relative z-10 flex items-center gap-1.5">
                     {link.name}
                     {link.isBadge && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-[#00C9A7]/20 border border-[#00C9A7]/40 px-1.5 py-0.2 text-[9px] font-bold text-[#00C9A7] uppercase tracking-wider">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-[#00C9A7]/20 border border-[#00C9A7]/40 px-1.5 py-0.2 text-[9px] font-bold text-[#008f76] uppercase tracking-wider">
                         <span className="h-1 w-1 rounded-full bg-[#00C9A7] animate-pulse" />
                         Live
                       </span>
@@ -242,6 +254,7 @@ const Navbar = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 className="w-5 h-5"
+                aria-hidden="true"
               >
                 <path d="M7 7h10v10" />
                 <path d="M7 17 17 7" />
@@ -265,6 +278,7 @@ const Navbar = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 className="w-5 h-5"
+                aria-hidden="true"
               >
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
@@ -274,8 +288,10 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="navigation-drawer"
               className="group relative z-10 flex h-10 w-10 shrink-0 cursor-pointer flex-col items-center justify-center gap-[5px] rounded-full border border-[#d8aa5d]/80 bg-[#d8aa5d] shadow-[0_6px_14px_rgba(0,0,0,0.35)] transition-all duration-300 hover:bg-white hover:border-[#d8aa5d] hover:scale-105"
-              aria-label="Open Menu"
+              aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
             >
               <span className="block w-4 h-[1.5px] rounded-full bg-white transition-colors duration-300 group-hover:bg-[#d8aa5d]" />
               <span className="block w-4 h-[1.5px] rounded-full bg-white transition-colors duration-300 group-hover:bg-[#d8aa5d]" />
@@ -290,11 +306,15 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
+            id="navigation-drawer"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation Menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[60] bg-neutral-950/90 backdrop-blur-2xl overflow-y-auto p-4 sm:p-6 md:p-10 text-white font-comforta flex flex-col justify-between"
+            className="fixed inset-0 z-[60] bg-neutral-950/95 backdrop-blur-2xl overflow-y-auto p-4 sm:p-6 md:p-10 text-white font-comforta flex flex-col justify-between"
           >
             {/* Ambient Background Glows */}
             <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">

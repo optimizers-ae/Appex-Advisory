@@ -247,27 +247,27 @@ const Footer = () => {
             {/* Bottom Sub-footer Bar */}
             <motion.div variants={fadeUpVariants} className="px-6 sm:px-10 lg:px-14 py-6 sm:py-8">
               <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-                <p className="text-center text-xs text-slate-400 md:text-left sm:text-sm">
+                <p className="text-center text-xs text-slate-300 md:text-left sm:text-sm">
                   © 2026 Appex Advisory. All rights reserved.
                 </p>
 
-                <p className="text-center text-xs md:text-sm text-white/50 italic">
+                <p className="text-center text-xs md:text-sm text-slate-300/90 italic">
                   “We build with empathy, creativity, and purpose.”
                 </p>
 
                 <div className="flex flex-wrap items-center justify-center gap-4 md:justify-end">
                   <a
                     href="#contact"
-                    className="text-xs text-slate-400 transition-colors duration-200 hover:text-[#7C3AED] sm:text-sm"
+                    className="text-xs text-slate-300 transition-colors duration-200 hover:text-white sm:text-sm"
                   >
-                    Privacy
+                    Privacy Policy
                   </a>
-                  <span className="text-slate-600">•</span>
+                  <span className="text-slate-400" aria-hidden="true">•</span>
                   <a
                     href="#contact"
-                    className="text-xs text-slate-400 transition-colors duration-200 hover:text-[#2563EB] sm:text-sm"
+                    className="text-xs text-slate-300 transition-colors duration-200 hover:text-white sm:text-sm"
                   >
-                    Terms
+                    Terms of Service
                   </a>
                 </div>
               </div>

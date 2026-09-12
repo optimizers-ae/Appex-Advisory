@@ -38,8 +38,24 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="group/hero relative flex min-h-screen items-center justify-center overflow-hidden p-6 text-center bg-[url('/banner.png')] bg-cover bg-center bg-no-repeat transition-all"
+      className="group/hero relative flex min-h-screen items-center justify-center overflow-hidden p-6 text-center bg-neutral-950 transition-all"
     >
+      {/* High-Performance LCP Hero Background Image */}
+      <picture className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <source media="(max-width: 768px)" srcSet="/banner-mobile.webp" type="image/webp" />
+        <source media="(min-width: 769px)" srcSet="/banner.webp" type="image/webp" />
+        <img
+          src="/banner.webp"
+          alt="Appex Advisory Design Engineering & Business Consultancy"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          width="1920"
+          height="1080"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+      </picture>
+
       {/* Background Overlays & Ambient Lights */}
       <div
         className="pointer-events-none absolute inset-0 z-0 overflow-hidden"

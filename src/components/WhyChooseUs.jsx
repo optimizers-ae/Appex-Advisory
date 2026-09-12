@@ -159,7 +159,11 @@ const WhyChooseUs = () => {
               <div className="relative min-h-[15rem] flex-1 overflow-hidden bg-neutral-950">
                 <img
                   src="/FASTER-poster.webp"
-                  alt="Understand Business"
+                  alt="Understand Business Process Strategy"
+                  loading="lazy"
+                  decoding="async"
+                  width="600"
+                  height="400"
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105 opacity-85"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent" />
@@ -183,7 +187,11 @@ const WhyChooseUs = () => {
               <div className="relative min-h-[11rem] sm:w-1/2 overflow-hidden bg-neutral-950 shrink-0">
                 <img
                   src="/SCALE-poster.webp"
-                  alt="One Team"
+                  alt="One Dedicated Team Support"
+                  loading="lazy"
+                  decoding="async"
+                  width="400"
+                  height="300"
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105 opacity-85"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07090e]/80 via-transparent to-transparent sm:bg-gradient-to-r sm:from-transparent sm:to-[#07090e]" />
@@ -224,7 +232,11 @@ const WhyChooseUs = () => {
               <div className="relative min-h-[11rem] sm:w-1/2 overflow-hidden bg-neutral-950 shrink-0">
                 <img
                   src="/poster.webp"
-                  alt="Honest Scoping"
+                  alt="Transparent Honest Advice"
+                  loading="lazy"
+                  decoding="async"
+                  width="400"
+                  height="300"
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105 opacity-85"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07090e]/80 via-transparent to-transparent sm:bg-gradient-to-r sm:from-transparent sm:to-[#07090e]" />
@@ -265,7 +277,11 @@ const WhyChooseUs = () => {
               <div className="relative min-h-[13rem] overflow-hidden bg-neutral-950 md:w-[36%] md:max-w-[22rem] shrink-0">
                 <img
                   src="/SEARCH-poster.webp"
-                  alt="Support Beyond Setup"
+                  alt="Support That Continues Beyond Setup"
+                  loading="lazy"
+                  decoding="async"
+                  width="400"
+                  height="300"
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-105 opacity-85"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07090e]/80 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#07090e]" />
