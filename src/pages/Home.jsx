@@ -19,16 +19,16 @@ const Home = () => {
       {/* 2. Hero */}
       <Hero />
 
-      {/* 3. About Us / Overview */}
+      {/* 3. About Us */}
       <About />
 
       {/* 5. Stats & Testimonial */}
       <StatsCounter />
 
-      {/* 6. Production Tech Stack Grid */}
+      {/* 6. Slider */}
       <TechStackGrid />
 
-      {/* 7. Accent Banner (Documented & Handed Off) */}
+      {/* 7. Accent Banner */}
       <MagneticCursor
         magneticFactor={0.55}
         blendMode="exclusion"
@@ -49,12 +49,10 @@ const Home = () => {
         />
       </MagneticCursor>
 
-      {/* 8. The Loro Difference / Why Choose Us */}
+      {/* 8. Why Choose Us */}
       <WhyChooseUs />
 
-
-
-      {/* 9. Interactive Live Dashboard Demo */}
+      {/* 9. Live Dashboard Demo */}
       <DashboardDemo />
 
       {/* 10. Contact CTA */}
