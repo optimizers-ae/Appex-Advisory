@@ -13,25 +13,20 @@ const Hero = () => {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.14,
-        delayChildren: 0.15,
+        staggerChildren: 0.08,
       },
     },
   }
 
-  // Fade-up animation for each item
+  // Fade-up animation for each item (starts visible so LCP is instant)
   const fadeUpVariants = {
     hidden: {
-      opacity: 0,
-      y: 35,
+      opacity: 1,
+      y: 0,
     },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 1,
-        ease: [0.22, 1, 0.36, 1],
-      },
     },
   }
 
