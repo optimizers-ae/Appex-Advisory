@@ -404,7 +404,7 @@ const MarqueeItem = ({ partner }) => {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="flex items-center gap-3.5 rounded-2xl border border-neutral-200/90 bg-white px-8 py-4.5 shadow-sm backdrop-blur-sm transition-all duration-300 hover:scale-105 cursor-pointer"
+      className="flex items-center gap-3.5 rounded-2xl bg-white px-8 py-4.5 shadow-sm backdrop-blur-sm transition-all duration-300 hover:scale-105 cursor-pointer"
       style={{
         borderColor: isHovered ? partner.accentBorder : undefined,
         boxShadow: isHovered ? `0 10px 25px -5px ${partner.accentBg}` : undefined,
@@ -431,7 +431,7 @@ const PartnerCard = ({ partner }) => {
       variants={cardFadeUpVariants}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-neutral-200/90 bg-white p-7 sm:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer"
+      className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border bg-white p-7 sm:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer"
       style={{
         borderColor: isHovered ? partner.accentBorder : undefined,
         boxShadow: isHovered ? `0 20px 35px -10px ${partner.accentBg}` : undefined,
