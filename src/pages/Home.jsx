@@ -8,6 +8,7 @@ import WhyChooseUs from '../components/WhyChooseUs';
 import DashboardDemo from '../components/DashboardDemo';
 import ContactCTA from '../components/ContactCTA';
 import Footer from '../components/Footer';
+import { MagneticCursor } from '../components/MouseTrackingEffect';
 
 const Home = () => {
   return (
@@ -28,23 +29,30 @@ const Home = () => {
       <TechStackGrid />
 
       {/* 7. Accent Banner (Documented & Handed Off) */}
-      <AccentBanner
-        image="/accent-section-1-v2.webp"
-        alt="Loro Labs Handed Off"
-        lines={[
-          'EVERY BUSINESS',
-          'DESERVES THE',
-          'RIGHT GUIDANCE',
-          'TO GROW.',
-        ]}
-        badge="ENGINEERED FOR BUSINESS SUCCESS"
-        position="bottom-right"
-      />
+      <MagneticCursor
+        magneticFactor={0.55}
+        blendMode="exclusion"
+        cursorSize={40}
+      >
+
+        <AccentBanner
+          image="/accent-section-1-v2.webp"
+          alt="Loro Labs Handed Off"
+          lines={[
+            'EVERY BUSINESS',
+            'DESERVES THE',
+            'RIGHT GUIDANCE',
+            'TO GROW.',
+          ]}
+          badge="ENGINEERED FOR BUSINESS SUCCESS"
+          position="bottom-right"
+        />
+      </MagneticCursor>
 
       {/* 8. The Loro Difference / Why Choose Us */}
       <WhyChooseUs />
 
-    
+
 
       {/* 9. Interactive Live Dashboard Demo */}
       <DashboardDemo />
